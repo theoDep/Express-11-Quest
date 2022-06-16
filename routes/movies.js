@@ -6,12 +6,10 @@ const { decodeTokenEmail, decodeTokenID } = require("../helpers/users");
 
 moviesRouter.get("/", async (req, res) => {
   const { max_duration, color } = req.query;
-  let user_id = null;
   let filters = { max_duration, color };
   if (req.cookies.user_token) {
-    await User.findByToken(req.cookies.user_token).then(
-      (user) => (user_id = user.id)
-    );
+    const token = req.cookies.user_token;
+    user_id = decodeTokenID(token);
     filters = { ...filters, user_id };
     await Movie.findMany({ filters })
       .then((movies) => {
