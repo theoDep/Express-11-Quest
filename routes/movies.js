@@ -12,15 +12,17 @@ moviesRouter.get("/", async (req, res) => {
       (user) => (user_id = user.id)
     );
     filters = { ...filters, user_id };
+    await Movie.findMany({ filters })
+      .then((movies) => {
+        res.json(movies);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send("Error retrieving movies from database");
+      });
+  } else {
+    res.status(401).send("You must be logged in to retrieve movies");
   }
-  await Movie.findMany({ filters })
-    .then((movies) => {
-      res.json(movies);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).send("Error retrieving movies from database");
-    });
 });
 
 moviesRouter.get("/:id", (req, res) => {
