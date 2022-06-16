@@ -2,6 +2,7 @@ const moviesRouter = require("express").Router();
 const Movie = require("../models/movie");
 const User = require("../models/user");
 const usersRouter = require("./users");
+const { decodeTokenEmail, decodeTokenID } = require("../helpers/users");
 
 moviesRouter.get("/", async (req, res) => {
   const { max_duration, color } = req.query;
@@ -40,28 +41,26 @@ moviesRouter.get("/:id", (req, res) => {
 });
 
 moviesRouter.post("/", (req, res) => {
-  User.findByToken(req.cookies.user_token).then((user) => {
+  const error = Movie.validate(req.body);
+  if (req.cookies.user_token) {
+    const token = req.cookies.user_token;
+    req.body.user_id = decodeTokenID(token);
+  } else {
+    return res.sendStatus(401);
+  }
+  if (error) {
+    res.status(422).json({ validationErrors: error.details });
+  } else {
     console.log(req.body);
-    const error = Movie.validate(req.body);
-    if (error) {
-      res.status(422).json({ validationErrors: error.details });
-    } else {
-      if (user) {
-        req.body.user_id = user.id;
-      } else {
-        return res.sendStatus(401);
-      }
-      console.log(req.body);
-      Movie.create(req.body)
-        .then((createdMovie) => {
-          res.status(201).json(createdMovie);
-        })
-        .catch((err) => {
-          console.error(err);
-          res.status(500).send("Error saving the movie");
-        });
-    }
-  });
+    Movie.create(req.body)
+      .then((createdMovie) => {
+        res.status(201).json(createdMovie);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error saving the movie");
+      });
+  }
 });
 
 moviesRouter.put("/:id", (req, res) => {

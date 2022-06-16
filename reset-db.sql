@@ -76,7 +76,7 @@ VALUES
     'Paris',
     'English',
     "$argon2id$v=19$m=65536,t=5,p=1$jHITg7fV+frX0WW5a+g1Og$qfe+ZDRfHN0wtRh5iUDK3jJOGX56OOCzFjE6cWMBje0",
-    "446cd3bb8993cd0114a2ce6df0cf4cd1"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsInVzZXJfaWQiOjEsImlhdCI6MTY1NTM3MzMyN30.DOAyAMpAIIOWmJTuQiLFF8LXhFfDkz9ey_lsgN066LE"
 
   ),(
     'Valeriy',
@@ -85,7 +85,7 @@ VALUES
     'Moscow',
     'Russian',
     '$argon2id$v=19$m=65536,t=5,p=1$jHITg7fV+frX0WW5a+g1Og$qfe+ZDRfHN0wtRh5iUDK3jJOGX56OOCzFjE6cWMBje0',
-    "d3caee5b58d232bc516f5cf20f627c5e"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJ2YWxlcml5LnBwaXVzQGV4YW1wbGUuY29tIiwidXNlcl9pZCI6MiwiaWF0IjoxNjU1MzczMzY3fQ.Z1cazU_F0aFa_VilRsWGtA4xG_pKxIi3azFU0mVyZt0"
   ),(
     'Ralf',
     'Geronimo',
@@ -93,5 +93,5 @@ VALUES
     'New York',
     'Italian',
     '$argon2id$v=19$m=65536,t=5,p=1$jHITg7fV+frX0WW5a+g1Og$qfe+ZDRfHN0wtRh5iUDK3jJOGX56OOCzFjE6cWMBje0',
-    "1baea32247615faa3d046b151a72a10e"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRW1haWwiOiJyYWxmLmdlcm9uaW1vQGV4YW1wbGUuY29tIiwidXNlcl9pZCI6MywiaWF0IjoxNjU1MzczNDE5fQ.2erYAv4PIaqtvm6WotrnNRBqrn43_BHGB_t0Ai3IlDU"
   );
